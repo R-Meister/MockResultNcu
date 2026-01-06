@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CGPA/SGPA Predictor - Calculate your expected GPA based on upcoming courses and grades. A simple, elegant tool for students.">
+    <title>GPA Predictor | Calculate Your CGPA & SGPA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon" id="logoAnimation"></div>
+                <span class="logo-text">GPA<span class="accent">Predictor</span></span>
+            </div>
+            <div class="header-subtitle">Predict your academic future</div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Current Status Card -->
+            <section class="card glass-card current-status">
+                <div class="card-header">
+                    <div class="card-icon" id="statusAnimation"></div>
+                    <h2>Current Academic Status</h2>
+                </div>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="currentCGPA">Current CGPA</label>
+                        <input type="number" id="currentCGPA" placeholder="e.g., 8.5" min="0" max="10" step="0.01">
+                        <span class="input-hint">0 - 10 scale</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="completedCredits">Completed Credits</label>
+                        <input type="number" id="completedCredits" placeholder="e.g., 45" min="0" step="1">
+                        <span class="input-hint">Total credits earned</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Course Card -->
+            <section class="card glass-card add-course">
+                <div class="card-header">
+                    <div class="card-icon" id="courseAnimation"></div>
+                    <h2>Upcoming Courses</h2>
+                </div>
+                
+                <div class="add-course-form">
+                    <div class="form-row">
+                        <div class="input-group flex-2">
+                            <label for="courseName">Course Name</label>
+                            <input type="text" id="courseName" placeholder="e.g., Data Structures">
+                        </div>
+                        <div class="input-group flex-1">
+                            <label for="courseCredits">Credits</label>
+                            <input type="number" id="courseCredits" placeholder="e.g., 4" min="1" max="12" step="1">
+                        </div>
+                        <div class="input-group flex-1">
+                            <label for="expectedGrade">Grade</label>
+                            <select id="expectedGrade">
+                                <option value="10">A+ (10)</option>
+                                <option value="9">A (9)</option>
+                                <option value="8">B+ (8)</option>
+                                <option value="7">B (7)</option>
+                                <option value="6">C+ (6)</option>
+                                <option value="5">C (5)</option>
+                                <option value="4">D (4)</option>
+                                <option value="0">F (0)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary add-btn" id="addCourseBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Course
+                    </button>
+                </div>
+
+                <!-- Course List -->
+                <div class="course-list" id="courseList">
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-animation" id="emptyAnimation"></div>
+                        <p>No courses added yet</p>
+                        <span>Add your upcoming courses above</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Card -->
+            <section class="card glass-card results-card" id="resultsCard">
+                <div class="card-header">
+                    <div class="card-icon" id="resultAnimation"></div>
+                    <h2>Predicted Results</h2>
+                </div>
+                
+                <div class="results-grid">
+                    <div class="result-item sgpa-result">
+                        <div class="result-label">Expected SGPA</div>
+                        <div class="result-value" id="sgpaValue">--</div>
+                        <div class="result-bar">
+                            <div class="result-bar-fill" id="sgpaBar"></div>
+                        </div>
+                        <div class="result-credits" id="semesterCredits">0 credits this semester</div>
+                    </div>
+                    <div class="result-divider"></div>
+                    <div class="result-item cgpa-result">
+                        <div class="result-label">Updated CGPA</div>
+                        <div class="result-value" id="cgpaValue">--</div>
+                        <div class="result-bar">
+                            <div class="result-bar-fill" id="cgpaBar"></div>
+                        </div>
+                        <div class="result-credits" id="totalCredits">0 total credits</div>
+                    </div>
+                </div>
+
+                <div class="cgpa-change" id="cgpaChange">
+                    <span class="change-icon" id="changeIcon">→</span>
+                    <span class="change-text" id="changeText">Add courses to see prediction</span>
+                </div>
+            </section>
+
+            <!-- Grade Reference Card -->
+            <section class="card glass-card grade-reference">
+                <div class="card-header collapsed" id="gradeRefHeader">
+                    <h3>Grade Point Reference</h3>
+                    <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                <div class="grade-table-wrapper" id="gradeTableWrapper">
+                    <table class="grade-table">
+                        <thead>
+                            <tr>
+                                <th>Grade</th>
+                                <th>Points</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>A+</td><td>10</td><td>Outstanding</td></tr>
+                            <tr><td>A</td><td>9</td><td>Excellent</td></tr>
+                            <tr><td>B+</td><td>8</td><td>Very Good</td></tr>
+                            <tr><td>B</td><td>7</td><td>Good</td></tr>
+                            <tr><td>C+</td><td>6</td><td>Above Average</td></tr>
+                            <tr><td>C</td><td>5</td><td>Average</td></tr>
+                            <tr><td>D</td><td>4</td><td>Pass</td></tr>
+                            <tr><td>F</td><td>0</td><td>Fail</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ❤️ for students everywhere</p>
+            <p class="footer-note">Calculations are based on credit-weighted GPA formula</p>
+        </footer>
+    </div>
+
+    <!-- Success Animation Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-animation" id="successAnimation"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
