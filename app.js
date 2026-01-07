@@ -72,13 +72,13 @@ function initAnimations() {
         path: 'https://assets5.lottiefiles.com/packages/lf20_qp1q7mct.json'
     });
 
-    // Course animation - Add/Plus icon
+    // Course animation - List/Add icon
     animations.course = lottie.loadAnimation({
         container: document.getElementById('courseAnimation'),
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        path: 'https://assets9.lottiefiles.com/packages/lf20_ky24lkyk.json'
+        path: 'https://assets9.lottiefiles.com/packages/lf20_o6spyjnc.json'
     });
 
     // Result animation - Trophy/Success
@@ -106,6 +106,15 @@ function initAnimations() {
         loop: false,
         autoplay: false,
         path: 'https://assets1.lottiefiles.com/packages/lf20_jbrw3hcz.json'
+    });
+
+    // Grade reference animation - Table/Chart
+    animations.gradeRef = lottie.loadAnimation({
+        container: document.getElementById('gradeRefAnimation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'https://assets1.lottiefiles.com/packages/lf20_X96T8F.json'
     });
 
     // Play success animation once when triggered
@@ -259,21 +268,24 @@ function calculateResults() {
     let semesterWeightedPoints = 0;
 
     courses.forEach(course => {
-        semesterCredits += course.credits;
-        semesterWeightedPoints += course.credits * course.gradePoints;
+        // If the grade is 'F' (0 points), we exclude its credits and points from calculation as per user's request
+        if (course.gradePoints > 0) {
+            semesterCredits += course.credits;
+            semesterWeightedPoints += course.credits * course.gradePoints;
+        }
     });
 
     // Calculate SGPA
-    const sgpa = semesterCredits > 0 
-        ? semesterWeightedPoints / semesterCredits 
+    const sgpa = semesterCredits > 0
+        ? semesterWeightedPoints / semesterCredits
         : 0;
 
     // Calculate updated CGPA
     // Formula: New CGPA = (Old CGPA * Old Credits + Semester Points) / (Old Credits + Semester Credits)
     const oldWeightedPoints = currentCGPA * completedCredits;
     const totalCredits = completedCredits + semesterCredits;
-    const newCGPA = totalCredits > 0 
-        ? (oldWeightedPoints + semesterWeightedPoints) / totalCredits 
+    const newCGPA = totalCredits > 0
+        ? (oldWeightedPoints + semesterWeightedPoints) / totalCredits
         : 0;
 
     // Calculate change
@@ -338,12 +350,12 @@ function animateValue(element, targetValue) {
     function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
+
         // Easing function (ease-out)
         const easeProgress = 1 - Math.pow(1 - progress, 3);
-        
+
         const currentValue = startValue + (targetValue - startValue) * easeProgress;
-        
+
         if (targetValue === 0 && courses.length === 0 && !elements.currentCGPA.value) {
             element.textContent = '--';
         } else {
@@ -375,7 +387,7 @@ function escapeHtml(text) {
 document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initEventListeners();
-    
+
     // Initial calculation
     calculateResults();
 
