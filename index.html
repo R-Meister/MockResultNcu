@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CGPA/SGPA Predictor - Calculate your expected GPA based on upcoming courses and grades. A simple, elegant tool for students.">
+    <meta name="description"
+        content="CGPA/SGPA Predictor - Calculate your expected GPA based on upcoming courses and grades. A simple, elegant tool for students.">
     <title>GPA Predictor | Calculate Your CGPA & SGPA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
+
 <body>
     <div class="app-container">
         <!-- Header -->
@@ -50,7 +54,7 @@
                     <div class="card-icon" id="courseAnimation"></div>
                     <h2>Upcoming Courses</h2>
                 </div>
-                
+
                 <div class="add-course-form">
                     <div class="form-row">
                         <div class="input-group flex-2">
@@ -76,7 +80,8 @@
                         </div>
                     </div>
                     <button class="btn btn-primary add-btn" id="addCourseBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
@@ -100,7 +105,7 @@
                     <div class="card-icon" id="resultAnimation"></div>
                     <h2>Predicted Results</h2>
                 </div>
-                
+
                 <div class="results-grid">
                     <div class="result-item sgpa-result">
                         <div class="result-label">Expected SGPA</div>
@@ -123,7 +128,7 @@
 
                 <div class="cgpa-change" id="cgpaChange">
                     <span class="change-icon" id="changeIcon">→</span>
-                    <span class="change-text" id="changeText">Add courses to see prediction</span>
+                    <span class="change-text" id="changeText">Add courses to see new results</span>
                 </div>
             </section>
 
@@ -131,7 +136,9 @@
             <section class="card glass-card grade-reference">
                 <div class="card-header collapsed" id="gradeRefHeader">
                     <h3>Grade Point Reference</h3>
-                    <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                 </div>
@@ -145,14 +152,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>A+</td><td>10</td><td>Outstanding</td></tr>
-                            <tr><td>A</td><td>9</td><td>Excellent</td></tr>
-                            <tr><td>B+</td><td>8</td><td>Very Good</td></tr>
-                            <tr><td>B</td><td>7</td><td>Good</td></tr>
-                            <tr><td>C+</td><td>6</td><td>Above Average</td></tr>
-                            <tr><td>C</td><td>5</td><td>Average</td></tr>
-                            <tr><td>D</td><td>4</td><td>Pass</td></tr>
-                            <tr><td>F</td><td>0</td><td>Fail</td></tr>
+                            <tr>
+                                <td>A+</td>
+                                <td>10</td>
+                                <td>Outstanding</td>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>9</td>
+                                <td>Excellent</td>
+                            </tr>
+                            <tr>
+                                <td>B+</td>
+                                <td>8</td>
+                                <td>Very Good</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>7</td>
+                                <td>Good</td>
+                            </tr>
+                            <tr>
+                                <td>C+</td>
+                                <td>6</td>
+                                <td>Above Average</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>5</td>
+                                <td>Average</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>4</td>
+                                <td>Pass</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>0</td>
+                                <td>Fail</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -161,7 +200,6 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Made with ❤️ for students everywhere</p>
             <p class="footer-note">Calculations are based on credit-weighted GPA formula</p>
         </footer>
     </div>
@@ -173,4 +211,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>

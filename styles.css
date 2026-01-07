@@ -6,30 +6,30 @@
     --primary-light: hsl(var(--primary-hue), 85%, 70%);
     --primary-dark: hsl(var(--primary-hue), 85%, 45%);
     --primary-glow: hsla(var(--primary-hue), 85%, 60%, 0.4);
-    
+
     --accent-hue: 170;
     --accent: hsl(var(--accent-hue), 75%, 50%);
     --accent-light: hsl(var(--accent-hue), 75%, 65%);
-    
+
     --success: hsl(145, 70%, 50%);
     --success-light: hsl(145, 70%, 65%);
     --warning: hsl(40, 90%, 55%);
     --danger: hsl(0, 75%, 60%);
-    
+
     /* Background Colors */
     --bg-dark: hsl(230, 25%, 8%);
     --bg-card: hsla(230, 20%, 15%, 0.6);
     --bg-card-hover: hsla(230, 20%, 18%, 0.8);
-    
+
     /* Text Colors */
     --text-primary: hsl(0, 0%, 95%);
     --text-secondary: hsl(230, 15%, 70%);
     --text-muted: hsl(230, 15%, 50%);
-    
+
     /* Borders */
     --border-subtle: hsla(230, 20%, 40%, 0.3);
     --border-glow: hsla(var(--primary-hue), 85%, 60%, 0.3);
-    
+
     /* Spacing */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
@@ -37,19 +37,19 @@
     --space-lg: 1.5rem;
     --space-xl: 2rem;
     --space-2xl: 3rem;
-    
+
     /* Border Radius */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 20px;
     --radius-full: 9999px;
-    
+
     /* Shadows */
     --shadow-sm: 0 2px 8px hsla(0, 0%, 0%, 0.2);
     --shadow-md: 0 4px 20px hsla(0, 0%, 0%, 0.3);
     --shadow-lg: 0 8px 40px hsla(0, 0%, 0%, 0.4);
     --shadow-glow: 0 0 30px var(--primary-glow);
-    
+
     /* Transitions */
     --transition-fast: 150ms ease;
     --transition-base: 250ms ease;
@@ -84,7 +84,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
+    background:
         radial-gradient(ellipse at 20% 20%, hsla(var(--primary-hue), 70%, 40%, 0.15) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 80%, hsla(var(--accent-hue), 70%, 40%, 0.1) 0%, transparent 50%),
         radial-gradient(ellipse at 50% 50%, hsla(280, 60%, 30%, 0.08) 0%, transparent 60%);
@@ -94,8 +94,15 @@ body::before {
 }
 
 @keyframes bgPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
 }
 
 /* ===== App Container ===== */
@@ -223,6 +230,18 @@ body::before {
     transition: all var(--transition-fast);
 }
 
+/* Hide number input spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
 .input-group input::placeholder {
     color: var(--text-muted);
 }
@@ -266,8 +285,15 @@ body::before {
     flex-wrap: wrap;
 }
 
-.flex-1 { flex: 1; min-width: 100px; }
-.flex-2 { flex: 2; min-width: 200px; }
+.flex-1 {
+    flex: 1;
+    min-width: 100px;
+}
+
+.flex-2 {
+    flex: 2;
+    min-width: 200px;
+}
 
 /* ===== Buttons ===== */
 .btn {
@@ -353,6 +379,7 @@ body::before {
         opacity: 0;
         transform: translateX(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -387,14 +414,37 @@ body::before {
     color: white;
 }
 
-.course-grade.grade-10 { background: linear-gradient(135deg, var(--success), var(--accent)); }
-.course-grade.grade-9 { background: linear-gradient(135deg, hsl(160, 70%, 45%), var(--accent)); }
-.course-grade.grade-8 { background: linear-gradient(135deg, var(--primary), var(--accent)); }
-.course-grade.grade-7 { background: linear-gradient(135deg, hsl(220, 70%, 55%), var(--primary)); }
-.course-grade.grade-6 { background: linear-gradient(135deg, hsl(45, 80%, 50%), hsl(30, 80%, 50%)); }
-.course-grade.grade-5 { background: linear-gradient(135deg, var(--warning), hsl(20, 80%, 50%)); }
-.course-grade.grade-4 { background: linear-gradient(135deg, hsl(15, 70%, 50%), var(--danger)); }
-.course-grade.grade-0 { background: linear-gradient(135deg, var(--danger), hsl(350, 70%, 40%)); }
+.course-grade.grade-10 {
+    background: linear-gradient(135deg, var(--success), var(--accent));
+}
+
+.course-grade.grade-9 {
+    background: linear-gradient(135deg, hsl(160, 70%, 45%), var(--accent));
+}
+
+.course-grade.grade-8 {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.course-grade.grade-7 {
+    background: linear-gradient(135deg, hsl(220, 70%, 55%), var(--primary));
+}
+
+.course-grade.grade-6 {
+    background: linear-gradient(135deg, hsl(45, 80%, 50%), hsl(30, 80%, 50%));
+}
+
+.course-grade.grade-5 {
+    background: linear-gradient(135deg, var(--warning), hsl(20, 80%, 50%));
+}
+
+.course-grade.grade-4 {
+    background: linear-gradient(135deg, hsl(15, 70%, 50%), var(--danger));
+}
+
+.course-grade.grade-0 {
+    background: linear-gradient(135deg, var(--danger), hsl(350, 70%, 40%));
+}
 
 .delete-btn {
     width: 36px;
@@ -643,42 +693,43 @@ body::before {
     .app-container {
         padding: var(--space-md);
     }
-    
+
     .card {
         padding: var(--space-lg);
     }
-    
+
     .input-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .form-row {
         flex-direction: column;
     }
-    
-    .flex-1, .flex-2 {
+
+    .flex-1,
+    .flex-2 {
         min-width: 100%;
     }
-    
+
     .add-btn {
         width: 100%;
     }
-    
+
     .results-grid {
         grid-template-columns: 1fr;
         gap: var(--space-md);
     }
-    
+
     .result-divider {
         width: 80%;
         height: 1px;
         margin: 0 auto;
     }
-    
+
     .result-value {
         font-size: 2.5rem;
     }
-    
+
     .logo-text {
         font-size: 1.5rem;
     }
@@ -686,8 +737,15 @@ body::before {
 
 /* ===== Utility Animations ===== */
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 .pulse {
@@ -695,9 +753,19 @@ body::before {
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
 }
 
 .shake {
